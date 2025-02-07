@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div style="align-items: left; width: 100%;">
+      <h2 class="fb700">
+        Tus canciones
+      </h2>
+    </div>
+
+    <div id="nav-container" style="margin-top: 25px;">
+      <ul>
+        <li>
+          <button class="activeButton">
+            Todas
+          </button>
+        </li>
+
+        <li>
+          <button class="inactiveButton">
+            Artistas
+          </button>
+        </li>
+
+        <li>
+          <button class="inactiveButton">
+            Álbumes
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="songsList" style="margin-top: 30px;">
+      <ul class="bannerSong">
+        <li *ngFor="let song of songsList">
+          <div  style="display: flex; align-items: center;">
+            <div class="songCover">
+              <img [src]="song.cover">
+            </div>
+            <div class="songDetails">
+              <div class="songName, fb550">
+                {{song.name}}
+              </div>
+              <div class="songArtist">
+                {{song.artist}}
+              </div>
+            </div>
+          </div>
+          <div style="margin-left: 30px;">
+            <button class="optionsButton" style="height: 30px; width: 30px;" (click)="changeModalStatus()"><ion-icon name="ellipsis-vertical-outline" style="height: 25px; width: 25px;"></ion-icon></button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="listening" style="margin-top: 20%;">
+      <div style="display: flex; align-items: center;">
+        <div class="listeningCover">
+          <img src="../../assets/covers/bad.jpeg">
+        </div>
+        <div class="songDetails">
+          <div class="songName">
+            Bad Dreams
+          </div>
+          <div class="songArtist">
+            Teddy Swims
+          </div>
+        </div>
+      </div>
+      <div style="margin-left: 30px;">
+        <button class="optionsButton" style="height: 30px; width: 30px;" *ngIf="isListening" (click)="changeListeningStatus()"><ion-icon name="pause-outline" style="color: white; height: 30px; width: 30px;"></ion-icon></button>
+        <button class="optionsButton" style="height: 30px; width: 30px;" *ngIf="!isListening" (click)="changeListeningStatus()"><ion-icon name="caret-forward-outline" style="color: white; height: 30px; width: 30px;"></ion-icon></button>
+      </div>
+    </div>
+
+    <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+      <ng-template>
+        <ion-content class="ion-padding"><button style="background-color: transparent; color: black;">Reproducir a continuación</button></ion-content>
+        <ion-content class="ion-padding"><button style="background-color: transparent; color: black;">Agregar al final de la cola</button></ion-content>
+        <ion-content class="ion-padding"><button style="background-color: transparent; color: black;">Eliminar</button></ion-content>
+        <ion-content class="ion-padding"><button style="background-color: transparent; color: black;">Compartir</button></ion-content>
+      </ng-template>
+    </ion-popover>
+  </div>
+
+</ion-content>
